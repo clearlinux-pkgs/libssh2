@@ -4,7 +4,7 @@
 #
 Name     : libssh2
 Version  : 1.7.0
-Release  : 1
+Release  : 2
 URL      : https://www.libssh2.org/download/libssh2-1.7.0.tar.gz
 Source0  : https://www.libssh2.org/download/libssh2-1.7.0.tar.gz
 Summary  : Library for SSH-based communication
