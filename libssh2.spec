@@ -6,7 +6,7 @@
 #
 Name     : libssh2
 Version  : 1.8.0
-Release  : 9
+Release  : 10
 URL      : https://www.libssh2.org/download/libssh2-1.8.0.tar.gz
 Source0  : https://www.libssh2.org/download/libssh2-1.8.0.tar.gz
 Source99 : https://www.libssh2.org/download/libssh2-1.8.0.tar.gz.asc
@@ -24,14 +24,6 @@ libssh2 - SSH2 library
 ======================
 libssh2 is a library implementing the SSH2 protocol, available under
 the revised BSD license.
-
-%package abi
-Summary: abi components for the libssh2 package.
-Group: Default
-
-%description abi
-abi components for the libssh2 package.
-
 
 %package dev
 Summary: dev components for the libssh2 package.
@@ -68,7 +60,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542402415
+export SOURCE_DATE_EPOCH=1542748338
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -80,7 +72,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1542402415
+export SOURCE_DATE_EPOCH=1542748338
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libssh2
 cp COPYING %{buildroot}/usr/share/package-licenses/libssh2/COPYING
@@ -88,10 +80,6 @@ cp COPYING %{buildroot}/usr/share/package-licenses/libssh2/COPYING
 
 %files
 %defattr(-,root,root,-)
-
-%files abi
-%defattr(-,root,root,-)
-/usr/share/abi/libssh2.so.1.abi
 
 %files dev
 %defattr(-,root,root,-)
