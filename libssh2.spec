@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x5CC908FDB71E12C2 (daniel@haxx.se)
 #
 Name     : libssh2
-Version  : 1.8.0
-Release  : 10
-URL      : https://www.libssh2.org/download/libssh2-1.8.0.tar.gz
-Source0  : https://www.libssh2.org/download/libssh2-1.8.0.tar.gz
-Source99 : https://www.libssh2.org/download/libssh2-1.8.0.tar.gz.asc
+Version  : 1.8.1
+Release  : 11
+URL      : https://www.libssh2.org/download/libssh2-1.8.1.tar.gz
+Source0  : https://www.libssh2.org/download/libssh2-1.8.1.tar.gz
+Source99 : https://www.libssh2.org/download/libssh2-1.8.1.tar.gz.asc
 Summary  : Library for SSH-based communication
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -53,14 +53,15 @@ license components for the libssh2 package.
 
 
 %prep
-%setup -q -n libssh2-1.8.0
+%setup -q -n libssh2-1.8.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542748338
+export SOURCE_DATE_EPOCH=1552946090
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -72,7 +73,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1542748338
+export SOURCE_DATE_EPOCH=1552946090
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libssh2
 cp COPYING %{buildroot}/usr/share/package-licenses/libssh2/COPYING
