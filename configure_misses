@@ -6,3 +6,5 @@ Configure miss: winsock2.h presence
 Configure miss: ws2tcpip.h usability
 Configure miss: ws2tcpip.h presence
 Configure miss: ws2tcpip.h
+Configure miss: memset_s
+Configure miss: whether to enable compiler warnings as errors

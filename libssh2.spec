@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x5CC908FDB71E12C2 (daniel@haxx.se)
 #
 Name     : libssh2
-Version  : 1.8.2
-Release  : 12
-URL      : https://www.libssh2.org/download/libssh2-1.8.2.tar.gz
-Source0  : https://www.libssh2.org/download/libssh2-1.8.2.tar.gz
-Source99 : https://www.libssh2.org/download/libssh2-1.8.2.tar.gz.asc
+Version  : 1.9.0
+Release  : 13
+URL      : https://www.libssh2.org/download/libssh2-1.9.0.tar.gz
+Source0  : https://www.libssh2.org/download/libssh2-1.9.0.tar.gz
+Source99 : https://www.libssh2.org/download/libssh2-1.9.0.tar.gz.asc
 Summary  : Library for SSH-based communication
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -30,6 +30,8 @@ Summary: dev components for the libssh2 package.
 Group: Development
 Requires: libssh2-lib = %{version}-%{release}
 Provides: libssh2-devel = %{version}-%{release}
+Requires: libssh2 = %{version}-%{release}
+Requires: libssh2 = %{version}-%{release}
 
 %description dev
 dev components for the libssh2 package.
@@ -53,27 +55,34 @@ license components for the libssh2 package.
 
 
 %prep
-%setup -q -n libssh2-1.8.2
+%setup -q -n libssh2-1.9.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1553558088
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562050369
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1553558088
+export SOURCE_DATE_EPOCH=1562050369
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libssh2
 cp COPYING %{buildroot}/usr/share/package-licenses/libssh2/COPYING
@@ -91,8 +100,10 @@ cp COPYING %{buildroot}/usr/share/package-licenses/libssh2/COPYING
 /usr/share/man/man3/libssh2_agent_disconnect.3
 /usr/share/man/man3/libssh2_agent_free.3
 /usr/share/man/man3/libssh2_agent_get_identity.3
+/usr/share/man/man3/libssh2_agent_get_identity_path.3
 /usr/share/man/man3/libssh2_agent_init.3
 /usr/share/man/man3/libssh2_agent_list_identities.3
+/usr/share/man/man3/libssh2_agent_set_identity_path.3
 /usr/share/man/man3/libssh2_agent_userauth.3
 /usr/share/man/man3/libssh2_banner_set.3
 /usr/share/man/man3/libssh2_base64_decode.3
