@@ -6,10 +6,10 @@
 #
 Name     : libssh2
 Version  : 1.9.0
-Release  : 14
+Release  : 15
 URL      : https://www.libssh2.org/download/libssh2-1.9.0.tar.gz
 Source0  : https://www.libssh2.org/download/libssh2-1.9.0.tar.gz
-Source1 : https://www.libssh2.org/download/libssh2-1.9.0.tar.gz.asc
+Source1  : https://www.libssh2.org/download/libssh2-1.9.0.tar.gz.asc
 Summary  : Library for SSH-based communication
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -57,6 +57,7 @@ license components for the libssh2 package.
 
 %prep
 %setup -q -n libssh2-1.9.0
+cd %{_builddir}/libssh2-1.9.0
 %patch1 -p1
 
 %build
@@ -64,14 +65,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571968999
+export SOURCE_DATE_EPOCH=1604898518
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static
 make  %{?_smp_mflags}
@@ -81,10 +82,10 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1571968999
+export SOURCE_DATE_EPOCH=1604898518
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libssh2
 cp %{_builddir}/libssh2-1.9.0/COPYING %{buildroot}/usr/share/package-licenses/libssh2/aaf482b05d3bc738542f5ee97d842b7e82daba8c
