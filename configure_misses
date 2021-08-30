@@ -1,10 +1,7 @@
-Configure miss: sshd
-Configure miss: whether to enable pedantic and debug compiler options
-Configure miss: whether to enable hidden symbols in the library
-Configure miss: winsock2.h usability
-Configure miss: winsock2.h presence
-Configure miss: ws2tcpip.h usability
-Configure miss: ws2tcpip.h presence
-Configure miss: ws2tcpip.h
+Configure miss: g++ option to enable C++11 features
+Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: memset_s
+Configure miss: sshd
 Configure miss: whether to enable compiler warnings as errors
+Configure miss: whether to enable hidden symbols in the library
+Configure miss: ws2tcpip.h

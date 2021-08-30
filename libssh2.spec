@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x5CC908FDB71E12C2 (daniel@haxx.se)
 #
 Name     : libssh2
-Version  : 1.9.0
-Release  : 16
-URL      : https://www.libssh2.org/download/libssh2-1.9.0.tar.gz
-Source0  : https://www.libssh2.org/download/libssh2-1.9.0.tar.gz
-Source1  : https://www.libssh2.org/download/libssh2-1.9.0.tar.gz.asc
+Version  : 1.10.0
+Release  : 17
+URL      : https://www.libssh2.org/download/libssh2-1.10.0.tar.gz
+Source0  : https://www.libssh2.org/download/libssh2-1.10.0.tar.gz
+Source1  : https://www.libssh2.org/download/libssh2-1.10.0.tar.gz.asc
 Summary  : Library for SSH-based communication
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -17,9 +17,7 @@ Requires: libssh2-lib = %{version}-%{release}
 Requires: libssh2-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : pkgconfig(openssl)
-BuildRequires : util-linux
 BuildRequires : zlib-dev
-Patch1: CVE-2019-17498.patch
 
 %description
 libssh2 - SSH2 library
@@ -56,24 +54,23 @@ license components for the libssh2 package.
 
 
 %prep
-%setup -q -n libssh2-1.9.0
-cd %{_builddir}/libssh2-1.9.0
-%patch1 -p1
+%setup -q -n libssh2-1.10.0
+cd %{_builddir}/libssh2-1.10.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604898518
+export SOURCE_DATE_EPOCH=1630340442
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -fzero-call-used-regs=used "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -fzero-call-used-regs=used "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -fzero-call-used-regs=used "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -fzero-call-used-regs=used "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used "
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -85,10 +82,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1604898518
+export SOURCE_DATE_EPOCH=1630340442
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libssh2
-cp %{_builddir}/libssh2-1.9.0/COPYING %{buildroot}/usr/share/package-licenses/libssh2/aaf482b05d3bc738542f5ee97d842b7e82daba8c
+cp %{_builddir}/libssh2-1.10.0/COPYING %{buildroot}/usr/share/package-licenses/libssh2/19b306b372fdae0f6390c0d4192c2a8f7973dac7
 %make_install
 
 %files
@@ -280,4 +277,4 @@ cp %{_builddir}/libssh2-1.9.0/COPYING %{buildroot}/usr/share/package-licenses/li
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/libssh2/aaf482b05d3bc738542f5ee97d842b7e82daba8c
+/usr/share/package-licenses/libssh2/19b306b372fdae0f6390c0d4192c2a8f7973dac7
