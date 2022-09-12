@@ -6,7 +6,7 @@
 #
 Name     : libssh2
 Version  : 1.10.0
-Release  : 17
+Release  : 18
 URL      : https://www.libssh2.org/download/libssh2-1.10.0.tar.gz
 Source0  : https://www.libssh2.org/download/libssh2-1.10.0.tar.gz
 Source1  : https://www.libssh2.org/download/libssh2-1.10.0.tar.gz.asc
