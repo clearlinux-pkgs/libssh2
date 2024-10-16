@@ -2,6 +2,8 @@ Configure miss: explicit_memset
 Configure miss: explicit_memset
 Configure miss: g++ option to enable C++11 features
 Configure miss: g++ option to enable C++11 features
+Configure miss: gcc option to enable large file support
+Configure miss: gcc option to enable large file support
 Configure miss: memset_s
 Configure miss: memset_s
 Configure miss: sshd
